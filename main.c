@@ -5,39 +5,52 @@
 
 int _printf(const char *format, ...)
 {
-	va_list args;
-	va_start(args, char *);
-	char *nextChar;
-	char c;
-	char *s;
+        va_list args;
+        va_start(args, format);
+        char c;
+        char *s;
+        int counter;
 
-	while (*format != '\0')
-	{
-		/* Look for percent operator know when we reach the arg list  */
-		if (*format == '%')
-		{
-			nextChar = format++;
+        counter = 0;
+        while (*format != '\0')
+        {
+                /* Look for percent operator know when we reach the arg list  */
+                if (*format == '%')
+                {
 
-			if (*nextChar == 'c')
-			{
-				c = va_arg(args, int);
-				putchar(c);	
-			} else if (*nextChar == 's')
-			{
-				s = va_arg(args, char *);
-				putchar(s);
-			} else if (*nextChar == '%')
-			{
-				/* Print a regular percent sign  */
-				putchar('%');
-			}
-			
-		} else
-		{
-			/* If regular char then just putchar  */
-			putchar(*format);
-		}
+                        format++;
+                        if (*format == 'c')
+                        {
+                                c = va_arg(args, int);
+                                putchar(c);
+                                counter++;
+                        } else if (*format == 's')
+                        {
+                                /* Loop through entire string  */
+                                while (*s != '\0')
+                                {
+                                        s = va_arg(args, char *);
+                                        putchar(*s);
+                                        s++;
+                                        counter++;
+                                }
+                        } else if (*format == '%')
+                        {
+                                /* Print a regular percent sign  */
+                                putchar('%');
+                                counter++;
+                        }
 
-		format++;
-	}
+                } else
+                {
+                        /* If regular char then just putchar  */
+                        putchar(*format);
+                        counter++;
+                }
+
+                format++;
+                counter++;
+        }
+
+        return counter;
 }
