@@ -11,6 +11,10 @@ int _printf(const char *format, ...)
 	int d;
 	char *nullStr;
 	int currentDigit;
+	int divisor;
+	int i;
+	int temp;
+	int numDigits;
 	
         va_list args;
         va_start(args, format);
@@ -78,17 +82,17 @@ int _printf(const char *format, ...)
 					 d = -d;
 				 }
 
-				 // Convert each digit to character and print
-				 int numDigits = 0;
-				 int temp = d;
+				 /* Convert each digit to character and print */
+				 numDigits = 0;
+				 temp = d;
 				 while (temp > 0)
 				 {
 					 temp /= 10;
 					 numDigits++;
 				 }
 
-				 int divisor = 1;
-				 for (int i = 1; i < numDigits; i++)
+				 divisor = 1;
+				 for (i = 1; i < numDigits; i++)
 				 {
 					 divisor *= 10;
 				 }
@@ -96,7 +100,7 @@ int _printf(const char *format, ...)
 				 while (divisor > 0)
 				 {
 					 currentDigit = d / divisor;
-					 putchar('0' + currentDigit); // Convert to character before printing
+					 putchar('0' + currentDigit); /* Convert to character before printing */
 					 counter++;
 					 d %= divisor;
 					 divisor /= 10;
