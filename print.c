@@ -62,7 +62,10 @@ int _printf(const char *format, ...)
                                 counter++;
                         } else
 			{
-				putchar(*format);
+				if (format != '')
+				{	
+					putchar(*format);
+				}
 				exit(98);
 			}
 
