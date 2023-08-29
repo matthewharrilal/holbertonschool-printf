@@ -52,5 +52,6 @@ int _printf(const char *format, ...)
                 counter++;
         }
 
+	putchar('\n');
         return counter;
 }
