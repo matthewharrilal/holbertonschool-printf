@@ -60,7 +60,10 @@ int _printf(const char *format, ...)
                                 /* Print a regular percent sign  */
                                 putchar('%');
                                 counter++;
-                        }
+                        } else
+			{
+				exit(98);
+			}
 
                 } else
                 {
