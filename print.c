@@ -5,12 +5,12 @@
 
 int _printf(const char *format, ...)
 {
-        va_list args;
-        va_start(args, format);
         char c;
         char *s;
         int counter;
 
+        va_list args;
+        va_start(args, format);
         counter = 0;
         while (*format != '\0')
         {
