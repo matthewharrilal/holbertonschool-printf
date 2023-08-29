@@ -69,7 +69,7 @@ int _printf(const char *format, ...)
 				while (d > 0)
 				{
 					currentDigit = d % 10;
-					putchar(currentDigit);
+					putchar('0' + currentDigit);
 					counter++;
 					d /= 10;
 				}
