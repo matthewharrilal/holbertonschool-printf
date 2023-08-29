@@ -12,7 +12,6 @@ int _printf(const char *format, ...)
         va_list args;
         va_start(args, format);
         counter = 0;
-	s = NULL;
         while (*format != '\0')
         {
                 /* Look for percent operator know when we reach the arg list  */
@@ -27,10 +26,11 @@ int _printf(const char *format, ...)
                                 counter++;
                         } else if (*format == 's')
                         {
+
+                                s = va_arg(args, char *);
                                 /* Loop through entire string  */
                                 while (*s != '\0')
                                 {
-                                        s = va_arg(args, char *);
                                         putchar(*s);
                                         s++;
                                         counter++;
