@@ -64,7 +64,7 @@ int _printf(const char *format, ...)
 			{
 				if (*format != ' ')
 				{
-					putchar(format--);	
+					putchar(*(format--));	
 					putchar(*format);
 				}
 				exit(98);
