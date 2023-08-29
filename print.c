@@ -11,7 +11,7 @@ int _printf(const char *format, ...)
 	int d;
 	char *nullStr;
 	int currentDigit;
-	`
+	
         va_list args;
         va_start(args, format);
 
