@@ -64,8 +64,13 @@ int _printf(const char *format, ...)
                         } else if (*format == 'd')
 			{
 				d = va_arg(args, int);
-				putchar(d);
-				counter++;			
+
+				while (d > 0)
+				{
+					putchar(d % 10);
+					counter++;
+					d /= 10;
+				}
 			} else
 			{
 				if (*format == '\0')
