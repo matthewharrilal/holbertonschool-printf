@@ -8,6 +8,7 @@ int _printf(const char *format, ...)
         char c;
         char *s;
         int counter;
+	char *nullStr;
 
         va_list args;
         va_start(args, format);
@@ -28,13 +29,25 @@ int _printf(const char *format, ...)
                         {
 
                                 s = va_arg(args, char *);
-                                /* Loop through entire string  */
-                                while (*s != '\0')
-                                {
-                                        putchar(*s);
-                                        s++;
-                                        counter++;
-                                }
+
+				if (s == NULL)
+				{
+					while (*nullStr != '\0')
+					{
+						putchar(*nullStr);
+						nullStr++;
+						counter++;
+					}
+				} else
+				{
+                                	/* Loop through entire string  */
+                                	while (*s != '\0')
+                                	{
+                                        	putchar(*s);
+                                        	s++;
+                                        	counter++;
+                                	}
+				}
                         } else if (*format == '%')
                         {
                                 /* Print a regular percent sign  */
