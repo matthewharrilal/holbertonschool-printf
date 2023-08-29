@@ -67,7 +67,7 @@ int _printf(const char *format, ...)
 					exit(98);
 				} else
 				{
-				 	putchar('%'); // Print % for unsupported format specifier
+				 	putchar('%'); /* Print % for unsupported format specifier */
                 			counter++;
                 			while (*format != '\0' && *format != ' ') 
 					{
