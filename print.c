@@ -15,7 +15,7 @@ int _printf(const char *format, ...)
 
 	if (format == NULL)
 	{
-		return 0;
+		exit(98);
 	}
 
         counter = 0;
