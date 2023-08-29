@@ -71,8 +71,8 @@ int _printf(const char *format, ...)
                 		counter++;
                 		while (*format != '\0' && *format != ' ') 
 				{
+					putchar(*format);	
                     			format++;
-					putchar(*format);
 					counter++;
                 		}
 				exit(98);	
