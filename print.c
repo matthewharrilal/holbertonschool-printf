@@ -8,6 +8,7 @@ int _printf(const char *format, ...)
         char c;
         char *s;
         int counter;
+	int d;
 	char *nullStr;
 
         va_list args;
@@ -60,7 +61,12 @@ int _printf(const char *format, ...)
                                 /* Print a regular percent sign  */
                                 putchar('%');
                                 counter++;
-                        } else
+                        } else if (*format == 'd')
+			{
+				d = va_arg(args, int);
+				putchar(d);
+				counter++;			
+			} else
 			{
 				if (*format == '\0')
 				{
