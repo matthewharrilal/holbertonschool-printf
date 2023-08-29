@@ -10,7 +10,8 @@ int _printf(const char *format, ...)
         int counter;
 	int d;
 	char *nullStr;
-
+	int currentDigit;
+	`
         va_list args;
         va_start(args, format);
 
@@ -67,7 +68,8 @@ int _printf(const char *format, ...)
 
 				while (d > 0)
 				{
-					putchar(d % 10);
+					currentDigit = d % 10;
+					putchar(currentDigit);
 					counter++;
 					d /= 10;
 				}
