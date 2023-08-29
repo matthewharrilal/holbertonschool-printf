@@ -75,7 +75,6 @@ int _printf(const char *format, ...)
                     			format++;
 					counter++;
                 		}
-				exit(98);	
 			}
 
                 } else
