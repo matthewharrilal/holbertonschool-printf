@@ -49,9 +49,7 @@ int _printf(const char *format, ...)
                 }
 
                 format++;
-                counter++;
         }
 
-	putchar('\n');
         return counter;
 }
