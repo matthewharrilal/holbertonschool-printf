@@ -66,13 +66,42 @@ int _printf(const char *format, ...)
 			{
 				d = va_arg(args, int);
 
-				while (d > 0)
-				{
-					currentDigit = d % 10;
-					putchar('0' + currentDigit);
-					counter++;
-					d /= 10;
-				}
+				 if (d == 0)
+				 {
+					 putchar('0');
+					 counter++;
+				 }
+				 else if (d < 0)
+				 {
+					 putchar('-');
+					 counter++;
+					 d = -d;
+				 }
+
+				 // Convert each digit to character and print
+				 int numDigits = 0;
+				 int temp = d;
+				 while (temp > 0)
+				 {
+					 temp /= 10;
+					 numDigits++;
+				 }
+
+				 int divisor = 1;
+				 for (int i = 1; i < numDigits; i++)
+				 {
+					 divisor *= 10;
+				 }
+
+				 while (divisor > 0)
+				 {
+					 currentDigit = d / divisor;
+					 putchar('0' + currentDigit); // Convert to character before printing
+					 counter++;
+					 d %= divisor;
+					 divisor /= 10;
+				 }
+
 			} else
 			{
 				if (*format == '\0')
