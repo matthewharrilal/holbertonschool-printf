@@ -32,7 +32,7 @@ int _printf(const char *format, ...)
 
 				if (s == NULL)
 				{
-					nullStr = "(null)"
+					nullStr = "(null)";
 					while (*nullStr != '\0')
 					{
 						putchar(*nullStr);
