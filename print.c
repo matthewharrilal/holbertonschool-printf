@@ -62,6 +62,8 @@ int _printf(const char *format, ...)
                                 counter++;
                         } else
 			{
+				putchar('%');
+				counter++;
 				exit(98);
 			}
 
