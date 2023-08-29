@@ -62,9 +62,20 @@ int _printf(const char *format, ...)
                                 counter++;
                         } else
 			{
-				putchar('%');
-				counter++;
-				exit(98);
+				if (*format == ' ')
+				{
+					exit(98);
+				} else
+				{
+				 	putchar('%'); // Print % for unsupported format specifier
+                			counter++;
+                			while (*format != '\0' && *format != ' ') 
+					{
+                    				format++;
+						putchar(*format);
+						counter++;
+                			}	
+				}
 			}
 
                 } else
