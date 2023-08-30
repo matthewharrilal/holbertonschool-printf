@@ -173,7 +173,6 @@ int _printf(const char *format, ...)
 				 {
 					 temp /= 10;
 					 numDigits++;
-					 printf("Temp: %d\n", temp);
 				 }
 
 				 divisor = 1;
@@ -182,16 +181,13 @@ int _printf(const char *format, ...)
 					 divisor *= 10;
 				 }
 
-				 printf("Divisor before decrementing %d\n", divisor);
 				 while (divisor > 0)
 				 {
 					 currentDigit = d / divisor;
-					 printf("Current Digit: %d\n", currentDigit);
 					 putchar('0' + currentDigit); /* Convert to character before printing */
 					 counter++;
 					 d %= divisor;
 					 divisor /= 10;
-					 printf("Divisor after decrementing %d\n", divisor);
 				 }
 
 			} else
