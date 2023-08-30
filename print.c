@@ -56,6 +56,7 @@ void formatSpecifier(va_list args, const char *format, int *counter)
 			 {
 				 putchar('0');
 				 (*counter)++;
+				 break;
 			 }
 			 else if (d < 0)
 			 {
