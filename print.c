@@ -8,13 +8,20 @@ void formatSpecifier(va_list args, const char *format, int *counter)
 {
 	char c;
 	char *nullStr;
-	
+	char *s;
+	int d;
+	int temp;
+	int i;
+	int numDigits;
+	int currentDigit;
+	int divisor;
+
 	switch (*format)
 	{
 		case 'c':
 		    	c = va_arg(args, int);
     			putchar(c);	
-    			*counter++;
+    			(*counter)++;
 			break;
 		case 's':
 			s = va_arg(args, char *);
@@ -25,7 +32,7 @@ void formatSpecifier(va_list args, const char *format, int *counter)
 				{
 					putchar(*nullStr);
 					nullStr++;
-					*counter++;
+					(*counter)++;
 				}
 			} else
 			{
@@ -34,13 +41,13 @@ void formatSpecifier(va_list args, const char *format, int *counter)
 				{
 					putchar(*s);
 					s++;
-					*counter++;
+					(*counter)++;
 				}
 			}
 			break;
 		case '%':
 			putchar('%');
-			*counter++;
+			(*counter)++;
 			break;
 		case 'd':
 			d = va_arg(args, int);
@@ -48,12 +55,12 @@ void formatSpecifier(va_list args, const char *format, int *counter)
 			 if (d == 0)
 			 {
 				 putchar('0');
-				 counter++;
+				 (*counter)++;
 			 }
 			 else if (d < 0)
 			 {
 				 putchar('-');
-				 counter++;
+				 (*counter)++;
 				 d = -d;
 			 }
 
@@ -76,7 +83,7 @@ void formatSpecifier(va_list args, const char *format, int *counter)
 			 {
 				 currentDigit = d / divisor;
 				 putchar('0' + currentDigit); / Convert to character before printing /
-				 counter++;
+				 (*counter)++;
 				 d %= divisor;
 				 divisor /= 10;
 			 }
@@ -88,12 +95,12 @@ void formatSpecifier(va_list args, const char *format, int *counter)
 			}
 
 			putchar('%'); /* Print % for unsupported format specifier */
-			counter++;
+			(*counter)++;
 			while (*format != '\0' && *format != ' ')
 			{
 				putchar(*format);
 				format++;
-				*counter++;
+				(*counter)++;
 			}
 
 			break;			
@@ -102,16 +109,7 @@ void formatSpecifier(va_list args, const char *format, int *counter)
 
 int _printf(const char *format, ...)
 {
-        char c;
-        char *s;
         int counter;
-	int d;
-	char *nullStr;
-	int currentDigit;
-	int divisor;
-	int i;
-	int temp;
-	int numDigits;
 	
         va_list args;
         va_start(args, format);
