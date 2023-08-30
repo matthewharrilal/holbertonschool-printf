@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-/*
 
 void formatSpecifier(va_list args, const char *format, int *counter)
 {
@@ -83,10 +82,24 @@ void formatSpecifier(va_list args, const char *format, int *counter)
 			 }
  			break;
 		default:
+			 if (*format == '\0')
+			{
+				exit(98);
+			}
+
+			putchar('%'); /* Print % for unsupported format specifier */
+			counter++;
+			while (*format != '\0' && *format != ' ')
+			{
+				putchar(*format);
+				format++;
+				*counter++;
+			}
+
 			break;			
 	}
 }
-*/
+
 int _printf(const char *format, ...)
 {
         char c;
@@ -114,99 +127,8 @@ int _printf(const char *format, ...)
                 /* Look for percent operator know when we reach the arg list  */
                 if (*format == '%')
                 {
-
-                        format++;
-                        if (*format == 'c')
-                        {
-                                c = va_arg(args, int);
-                                putchar(c);
-                                counter++;
-                        } else if (*format == 's')
-                        {
-
-                                s = va_arg(args, char *);
-
-				if (s == NULL)
-				{
-					nullStr = "(null)";
-					while (*nullStr != '\0')
-					{
-						putchar(*nullStr);
-						nullStr++;
-						counter++;
-					}
-				} else
-				{
-                                	/* Loop through entire string  */
-                                	while (*s != '\0')
-                                	{
-                                        	putchar(*s);
-                                        	s++;
-                                        	counter++;
-                                	}
-				}
-                        } else if (*format == '%')
-                        {
-                                /* Print a regular percent sign  */
-                                putchar('%');
-                                counter++;
-                        } else if (*format == 'd')
-			{
-				d = va_arg(args, int);
-
-				 if (d == 0)
-				 {
-					 putchar('0');
-					 counter++;
-				 }
-				 else if (d < 0)
-				 {
-					 putchar('-');
-					 counter++;
-					 d = -d;
-				 }
-
-				 /* Convert each digit to character and print */
-				 numDigits = 0;
-				 temp = d;
-				 while (temp > 0)
-				 {
-					 temp /= 10;
-					 numDigits++;
-				 }
-
-				 divisor = 1;
-				 for (i = 1; i < numDigits; i++)
-				 {
-					 divisor *= 10;
-				 }
-
-				 while (divisor > 0)
-				 {
-					 currentDigit = d / divisor;
-					 putchar('0' + currentDigit); /* Convert to character before printing */
-					 counter++;
-					 d %= divisor;
-					 divisor /= 10;
-				 }
-
-			} else
-			{
-				if (*format == '\0')
-				{
-					exit(98);
-				}
-
-				putchar('%'); /* Print % for unsupported format specifier */
-                		counter++;
-                		while (*format != '\0' && *format != ' ') 
-				{
-					putchar(*format);	
-                    			format++;
-					counter++;
-                		}
-				return counter;
-			}
+                    	format++;
+			formatSpecifier(args, format, &counter);
 
                 } else
                 {
