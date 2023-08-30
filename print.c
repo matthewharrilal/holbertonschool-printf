@@ -2,18 +2,18 @@
 
 #include <stdio.h>
 #include <stdarg.h>
-
+#include <stdint.h>
 
 void formatSpecifier(va_list args, const char *format, int *counter)
 {
 	char c;
 	char *nullStr;
 	char *s;
-	int d;
-	int temp;
+	int64_t d;
+	int64_t temp;
 	int i;
 	int numDigits;
-	int currentDigit;
+	int64_t currentDigit;
 	int divisor;
 
 	switch (*format)
@@ -67,7 +67,7 @@ void formatSpecifier(va_list args, const char *format, int *counter)
 
 			 /* Convert each digit to character and print */
 			 numDigits = 0;
-			 temp = d;
+			 temp = llabs(d);
 			 while (temp > 0)
 			 {
 				 temp /= 10;
