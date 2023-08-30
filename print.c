@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include <stdarg.h>
 
+/*
+
 void formatSpecifier(va_list args, const char *format, int *counter)
 {
 	char c;
@@ -28,7 +30,7 @@ void formatSpecifier(va_list args, const char *format, int *counter)
 				}
 			} else
 			{
-				/* Loop through entire string  */
+				/ Loop through entire string  /
 				while (*s != '\0')
 				{
 					putchar(*s);
@@ -56,7 +58,7 @@ void formatSpecifier(va_list args, const char *format, int *counter)
 				 d = -d;
 			 }
 
-			 /* Convert each digit to character and print */
+			 / Convert each digit to character and print /
 			 numDigits = 0;
 			 temp = d;
 			 while (temp > 0)
@@ -74,7 +76,7 @@ void formatSpecifier(va_list args, const char *format, int *counter)
 			 while (divisor > 0)
 			 {
 				 currentDigit = d / divisor;
-				 putchar('0' + currentDigit); /* Convert to character before printing */
+				 putchar('0' + currentDigit); / Convert to character before printing /
 				 counter++;
 				 d %= divisor;
 				 divisor /= 10;
@@ -84,7 +86,7 @@ void formatSpecifier(va_list args, const char *format, int *counter)
 			break;			
 	}
 }
-
+*/
 int _printf(const char *format, ...)
 {
         char c;
