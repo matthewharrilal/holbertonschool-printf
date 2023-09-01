@@ -50,6 +50,7 @@ void formatSpecifier(va_list args, const char *format, int *counter)
 			(*counter)++;
 			break;
 		case 'd':
+		case 'i':
 			d = va_arg(args, int);
 
 			 if (d == 0)
