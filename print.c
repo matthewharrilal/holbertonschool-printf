@@ -112,7 +112,7 @@ void formatSpecifier(va_list args, const char *format, int *counter)
 				{
 					firstSetBit = true;
 					putchar('1'); /* We evaluate a 1 once the first bet is set given the truthyness test  */
-				} else {
+				} else if (firstSetBit) {
 					putchar('0');
 				}
 			}
