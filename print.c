@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdint.h>
+#include <stdbool.h>
 
 void formatSpecifier(va_list args, const char *format, int *counter)
 {
