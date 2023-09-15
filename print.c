@@ -19,7 +19,7 @@ void formatSpecifier(va_list args, const char *format, int *counter)
 	int64_t currentDigit;
 	int divisor;
 	int index;
-	/* bool firstSetBit; */
+	bool firstSetBit;
 
 	switch (*format)
 	{
@@ -104,13 +104,13 @@ void formatSpecifier(va_list args, const char *format, int *counter)
 				break;
 			}
 
-			/* firstSetBit = false; */
+			 firstSetBit = false;
 
 			for (index = CHAR_BIT * sizeof(unsigned int) - 1; index >= 0; index--)
 			{
 				if (b & (1UL << index))
 				{
-					/* firstSetBit = true; */
+					firstSetBit = true;
 					putchar('1'); /* We evaluate a 1 once the first bet is set given the truthyness test  */
 				} else {
 					putchar('0');
