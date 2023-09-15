@@ -4,6 +4,7 @@
 #include <stdarg.h>
 #include <stdint.h>
 #include <stdbool.h>
+#include <limits.h>
 
 void formatSpecifier(va_list args, const char *format, int *counter)
 {
@@ -103,13 +104,13 @@ void formatSpecifier(va_list args, const char *format, int *counter)
 				break;
 			}
 
-			firstBitSet = false;
+			firstSetBit = false;
 
 			for (index = CHAR_BIT * sizeof(unsigned int) - 1; index >= 0, index--)
 			{
 				if (n & (1UL << index))
 				{
-					firstBitSet = true;
+					firstSetBit = true;
 					putchar('1') /* We evaluate a 1 once the first bet is set given the truthyness test  */
 				} else {
 					putchar('0');
