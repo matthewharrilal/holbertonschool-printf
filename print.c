@@ -106,7 +106,7 @@ void formatSpecifier(va_list args, const char *format, int *counter)
 
 			firstSetBit = false;
 
-			for (index = CHAR_BIT * sizeof(unsigned int) - 1; index >= 0; index--);
+			for (index = CHAR_BIT * sizeof(unsigned int) - 1; index >= 0; index--)
 			{
 				if (b & (1UL << index))
 				{
