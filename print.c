@@ -106,9 +106,9 @@ void formatSpecifier(va_list args, const char *format, int *counter)
 
 			firstSetBit = false;
 
-			for (index = CHAR_BIT * sizeof(unsigned int) - 1; index >= 0, index--)
+			for (index = CHAR_BIT * sizeof(unsigned int) - 1; index >= 0; index--);
 			{
-				if (n & (1UL << index))
+				if (b & (1UL << index))
 				{
 					firstSetBit = true;
 					putchar('1'); /* We evaluate a 1 once the first bet is set given the truthyness test  */
