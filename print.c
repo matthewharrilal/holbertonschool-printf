@@ -11,10 +11,13 @@ void formatSpecifier(va_list args, const char *format, int *counter)
 	char *s;
 	int64_t d;
 	int64_t temp;
+	unsigned int b;
 	int i;
 	int numDigits;
 	int64_t currentDigit;
 	int divisor;
+	int index;
+	bool firstSetBit;
 
 	switch (*format)
 	{
@@ -90,6 +93,28 @@ void formatSpecifier(va_list args, const char *format, int *counter)
 				 divisor /= 10;
 			 }
  			break;
+		case 'b':
+			b = va_arg(args, int);
+
+			if (b == 0)
+			{
+				putchar('0');
+				break;
+			}
+
+			firstBitSet = false;
+
+			for (index = CHAR_BIT * sizeof(unsigned int) - 1; index >= 0, index--)
+			{
+				if (n & (1UL << index))
+				{
+					firstBitSet = true;
+					putchar('1') /* We evaluate a 1 once the first bet is set given the truthyness test  */
+				} else {
+					putchar('0');
+				}
+			}
+			break;
 		default:
 			 if (*format == '\0')
 			{
