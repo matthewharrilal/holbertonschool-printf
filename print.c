@@ -14,7 +14,7 @@ void formatSpecifier(va_list args, const char *format, int *counter)
 	int64_t d;
 	int64_t temp;
 	unsigned int b;
-	int i;
+	int i;i
 	int numDigits;
 	int64_t currentDigit;
 	int divisor;
@@ -96,7 +96,8 @@ void formatSpecifier(va_list args, const char *format, int *counter)
 			 }
  			break;
 		case 'b':
-			b = va_arg(args, int);
+		case 'u':
+			b = (*format == 'u') ? va_arg(args, unsigned int) : va_arg(args, int);
 
 			if (b == 0)
 			{
@@ -104,7 +105,7 @@ void formatSpecifier(va_list args, const char *format, int *counter)
 				break;
 			}
 
-			 firstSetBit = false;
+			 firstSetBit = false
 
 			for (index = CHAR_BIT * sizeof(unsigned int) - 1; index >= 0; index--)
 			{
