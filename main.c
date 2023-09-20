@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "main.h"
+#include "print.c"
 
 /**
  * main - Entry point
@@ -11,8 +12,9 @@ int main(void)
 {
 	int len, len2;
 
-	len = _printf("Let's print a simple sentence.\n");
-	len2 = printf("Let's print a simple sentence.\n");
+	len = _printf("%u\n", -1024);
+	printf("Difference\n");
+	len2 = printf("%u\n", -1024);
 	fflush(stdout);
 	if (len != len2)
 	{

@@ -18,7 +18,7 @@ void formatSpecifier(va_list args, const char *format, int *counter)
 	int numDigits;
 	int64_t currentDigit;
 	int divisor;
-	int index;
+	size_t index;
 	bool firstSetBit;
 
 	switch (*format)
@@ -56,7 +56,8 @@ void formatSpecifier(va_list args, const char *format, int *counter)
 			break;
 		case 'd':
 		case 'i':
-			d = va_arg(args, int);
+		case 'u':
+			d = (*format == 'u') ? va_arg(args, unsigned int) : va_arg(args, int);
 
 			 if (d == 0)
 			 {
@@ -73,7 +74,7 @@ void formatSpecifier(va_list args, const char *format, int *counter)
 
 			 /* Convert each digit to character and print */
 			 numDigits = 0;
-			 temp = llabs(d);
+			 temp = (*format == 'u') ? (unsigned int)d : llabs(d);
 			 while (temp > 0)
 			 {
 				 temp /= 10;
@@ -96,8 +97,7 @@ void formatSpecifier(va_list args, const char *format, int *counter)
 			 }
  			break;
 		case 'b':
-		case 'u':
-			b = (*format == 'u') ? va_arg(args, unsigned int) : va_arg(args, int);
+			b = va_arg(args, int);
 
 			if (b == 0)
 			{
@@ -107,11 +107,12 @@ void formatSpecifier(va_list args, const char *format, int *counter)
 
 			firstSetBit = false;
 
-			for (index = CHAR_BIT * sizeof(unsigned int) - 1; index >= 0; index--)
+			for (index = CHAR_BIT * sizeof(unsigned int) - 1; index > 0; index--)
 			{
 				if (b & (1UL << index))
 				{
 					firstSetBit = true;
+					printf("Coming in here \n");
 					putchar('1'); /* We evaluate a 1 once the first bet is set given the truthyness test  */
 				} else if (firstSetBit) {
 					putchar('0');
