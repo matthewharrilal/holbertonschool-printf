@@ -14,7 +14,7 @@ void formatSpecifier(va_list args, const char *format, int *counter)
 	int64_t d;
 	int64_t temp;
 	unsigned int b;
-	int i;i
+	int i;
 	int numDigits;
 	int64_t currentDigit;
 	int divisor;
