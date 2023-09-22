@@ -20,6 +20,11 @@ void formatSpecifier(va_list args, const char *format, int *counter)
 	int divisor;
 	size_t index;
 	bool firstSetBit;
+	unsigned int o;
+	unsigned int remainder;
+	int octalQueue[11];
+	int octalQueueIndex;
+	int octalReverseIndex;
 
 	switch (*format)
 	{
@@ -117,6 +122,35 @@ void formatSpecifier(va_list args, const char *format, int *counter)
 				} else if (firstSetBit) {
 					putchar('0');
 				}
+			}
+			break;
+		case 'o':
+			o = va_arg(args, unsigned int);
+			octalQueueIndex = 0;
+			index = 0;
+
+			o = abs(o);
+			if (o == 0)
+			{
+				putchar('0');
+				break;
+			}
+
+			while (o > 0)
+			{
+				remainder = o % 8;
+				o = o / 8;
+
+				octalQueue[octalQueueIndex] = remainder % 7;
+				octalQueueIndex++;
+			}
+
+			octalReverseIndex = octalQueueIndex - 1;
+			
+			while (octalReverseIndex >= 0)
+			{
+				putchar('0' + octalQueue[octalReverseIndex]);
+				octalReverseIndex--;
 			}
 			break;
 		default:
